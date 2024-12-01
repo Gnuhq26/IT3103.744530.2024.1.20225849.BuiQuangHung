@@ -52,4 +52,8 @@ public abstract class MediaHbq {
     public void setCostHbq(float cost) {
         this.cost = cost;
     }
+    // Phương thức kiểm tra khớp tiêu đề
+    public boolean isMatch(String title) {
+        return this.getTitleHbq().equalsIgnoreCase(title); // So sánh tiêu đề không phân biệt chữ hoa/thường
+    }
 }

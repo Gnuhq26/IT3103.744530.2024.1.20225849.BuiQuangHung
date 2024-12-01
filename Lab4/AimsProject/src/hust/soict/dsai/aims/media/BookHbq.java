@@ -24,4 +24,8 @@ public class BookHbq extends MediaHbq {
             System.out.println(authorName + " is not in the list.");
         }
     }
+    // Phương thức lấy danh sách tác giả
+    public List<String> getAuthorsHbq() {
+        return authors;
+    }
 }
