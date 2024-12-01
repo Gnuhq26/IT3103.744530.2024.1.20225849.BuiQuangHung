@@ -1,3 +1,8 @@
+package hust.soict.dsai.aims;
+import hust.soict.dsai.aims.cart.CartHungBQ;
+import hust.soict.dsai.aims.disc.DVDHungBQ;
+
+
 public class AimsHungBQ {
     public static void main(String[] args) {
         //Create new cart

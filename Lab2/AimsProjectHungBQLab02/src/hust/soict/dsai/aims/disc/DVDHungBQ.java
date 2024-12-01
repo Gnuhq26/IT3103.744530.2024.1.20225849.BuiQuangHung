@@ -1,3 +1,4 @@
+package hust.soict.dsai.aims.disc;
 public class DVDHungBQ {
     //Khai báo thuộc tính
     private static int nbDigitalVideoDiscsHbq = 0;

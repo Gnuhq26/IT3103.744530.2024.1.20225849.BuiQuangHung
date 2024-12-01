@@ -1,3 +1,5 @@
+package hust.soict.dsai.aims.cart;
+import hust.soict.dsai.aims.disc.DVDHungBQ;
 public class CartHungBQ {
     public static final int MAX_NUMBERS_ORDERED = 20;
     private DVDHungBQ itemsOrdered[] = new DVDHungBQ[MAX_NUMBERS_ORDERED];

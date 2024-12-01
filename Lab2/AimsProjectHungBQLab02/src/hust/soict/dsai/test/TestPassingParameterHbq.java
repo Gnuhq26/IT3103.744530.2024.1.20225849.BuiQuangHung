@@ -1,3 +1,6 @@
+package hust.soict.dsai.test;
+import hust.soict.dsai.aims.disc.DVDHungBQ;
+
 public class TestPassingParameterHbq
  {
     public static void main(String[] args){

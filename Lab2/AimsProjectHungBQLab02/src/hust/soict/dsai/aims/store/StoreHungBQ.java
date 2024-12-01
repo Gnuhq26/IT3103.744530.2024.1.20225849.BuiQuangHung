@@ -1,5 +1,8 @@
+package hust.soict.dsai.aims.store;
 import java.util.ArrayList;
 import java.util.List;
+
+import hust.soict.dsai.aims.disc.DVDHungBQ;
 public class StoreHungBQ {
      // Attribute: danh sách động các đĩa DVD có sẵn trong cửa hàng
     private List<DVDHungBQ> itemsInStoreHbq;

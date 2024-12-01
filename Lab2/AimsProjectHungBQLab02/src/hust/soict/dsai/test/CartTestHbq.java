@@ -1,3 +1,7 @@
+package hust.soict.dsai.test;
+import hust.soict.dsai.aims.cart.CartHungBQ;
+import hust.soict.dsai.aims.disc.DVDHungBQ;
+
 public class CartTestHbq {
     public static void main(String[] args) {
         CartHungBQ cart = new CartHungBQ();

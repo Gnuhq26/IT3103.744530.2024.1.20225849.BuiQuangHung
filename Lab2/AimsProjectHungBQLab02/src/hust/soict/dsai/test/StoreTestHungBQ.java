@@ -1,3 +1,7 @@
+package hust.soict.dsai.test;
+import hust.soict.dsai.aims.disc.DVDHungBQ;
+import hust.soict.dsai.aims.store.StoreHungBQ;
+
 public class StoreTestHungBQ {
     public static void main(String[] args) {
         StoreHungBQ myStore = new StoreHungBQ();
