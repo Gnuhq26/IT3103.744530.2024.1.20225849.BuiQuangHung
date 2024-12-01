@@ -5,12 +5,17 @@ public class CompactDiscHbq extends DiscHbq implements PlayableHbq{
     private ArrayList<TrackHbq> tracks;  //ArrayList chứa các đối tượng TrackHbq    
 
     public void play() {
-        System.out.println("Playing CompactDisc: " + this.getTitleHbq());
+        System.out.println("Playing CompactDisc: " + getTitleHbq());
         System.out.println("Artist: " + this.artist);
-        System.out.println("Tracks on this CD:");
-        // Lặp qua tất cả các track và gọi phương thức play() của từng track
-        for (TrackHbq track : tracks) {
-            track.play();
+
+        if (tracks.isEmpty()) {
+            System.out.println("No tracks to play.");
+        } else {
+            System.out.println("Tracks:");
+            // Lặp qua tất cả các track và gọi phương thức play() của từng track
+            for (TrackHbq track : tracks) {
+                track.play();
+            }
         }
     }
     // Constructor với title và cost
@@ -20,7 +25,7 @@ public class CompactDiscHbq extends DiscHbq implements PlayableHbq{
     }
     // Constructor với các tham số đầy đủ
     public CompactDiscHbq(int id, String title, String category,  String author, String artist, int length, float cost) {
-        super(id, title, category, cost, length, author); 
+        super(id, title, category, author, length, cost); 
         this.artist = artist;  // Gán giá trị cho trường artist
         this.tracks = new ArrayList<TrackHbq>();  // Khởi tạo danh sách tracks
     }
@@ -30,6 +35,9 @@ public class CompactDiscHbq extends DiscHbq implements PlayableHbq{
     }
     // Phương thức thêm track vào danh sách tracks
     public void addTrackHbq(TrackHbq track) {
+        if (track == null) {
+            throw new IllegalArgumentException("Track cannot be null.");
+        }
         // Kiểm tra xem track đã tồn tại chưa
         if (tracks.contains(track)) {
             System.out.println("Track already exists in the list.");
@@ -40,6 +48,9 @@ public class CompactDiscHbq extends DiscHbq implements PlayableHbq{
     }
     // Phương thức xóa track khỏi danh sách tracks
     public void removeTrackHbq(TrackHbq track) {
+        if (track == null) {
+            throw new IllegalArgumentException("Track cannot be null.");
+        }
         // Kiểm tra xem track có trong danh sách không
         if (tracks.contains(track)) {
             tracks.remove(track);
@@ -55,5 +66,14 @@ public class CompactDiscHbq extends DiscHbq implements PlayableHbq{
             totalLength += track.getLengthHbq();  // Cộng tổng length của từng track
         }
         return totalLength;
+    }
+    @Override
+    public String toString() {
+        return "CD [" + getTitleHbq() + 
+        " - " + getAuthorHbq() + 
+        " - " + getArtistHbq() + 
+        " - " + tracks.size() + 
+        " - " + getLengthHbq() + 
+        " - " + getCostHbq() + "]";
     }
 }

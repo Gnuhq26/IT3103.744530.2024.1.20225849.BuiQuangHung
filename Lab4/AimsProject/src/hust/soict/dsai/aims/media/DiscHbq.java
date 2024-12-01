@@ -3,7 +3,7 @@ public class DiscHbq extends MediaHbq {
     private int length;
     private String author;
     // Constructor đầy đủ
-    public DiscHbq(int id, String title, String category, float cost, int length, String author) {
+    public DiscHbq(int id, String title, String category, String author, int length, float cost) {
         super(id, title, category, cost); // Gọi constructor lớp Media
         this.length = length;
         this.author = author;

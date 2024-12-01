@@ -1,8 +1,4 @@
-package hust.soict.dsai.aims.disc;
-
-import hust.soict.dsai.aims.media.DiscHbq;
-import hust.soict.dsai.aims.media.PlayableHbq;
-
+package hust.soict.dsai.aims.media;
 public class DVDHungBQ extends DiscHbq implements PlayableHbq {
     private static int nbDigitalVideoDiscsHbq = 0;
 
@@ -12,7 +8,7 @@ public class DVDHungBQ extends DiscHbq implements PlayableHbq {
     }
     // Constructor với tự động tạo id
     public DVDHungBQ(String title) {
-        super(++nbDigitalVideoDiscsHbq, title, null, 0.0f, 0, null);
+        super(++nbDigitalVideoDiscsHbq, title, null, null, 0, 0.0f);
     }
     // Constructor chỉ với title và cost
     public DVDHungBQ(String title, float cost) {
@@ -36,5 +32,13 @@ public class DVDHungBQ extends DiscHbq implements PlayableHbq {
     // Phương thức kiểm tra khớp tiêu đề
     public boolean isMatch(String title) {
         return this.getTitleHbq().equalsIgnoreCase(title); // So sánh tiêu đề không phân biệt chữ hoa/thường
+    }
+    @Override
+    public String toString() {
+        return "DVD [" + getTitleHbq() + 
+        " - " + getCategoryHbq() + 
+        " - " + getAuthorHbq() + 
+        " - " + getLengthHbq() + 
+        " - " + getCostHbq() + "]";
     }
 }

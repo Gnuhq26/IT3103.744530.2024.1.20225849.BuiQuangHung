@@ -28,4 +28,11 @@ public class BookHbq extends MediaHbq {
     public List<String> getAuthorsHbq() {
         return authors;
     }
+    @Override
+    public String toString() {
+        return "Book [" + getTitleHbq() + 
+        " - " + getCategoryHbq() + 
+        " - " + getAuthorsHbq() +  
+        " - " + getCostHbq() + "]";
+    }
 }
