@@ -37,4 +37,33 @@ public class StoreHungBQ {
             System.out.println("No media found in the store that matches the given media.");
         }
     }
+    // Method to search for a Media by its title
+    public MediaHbq searchByTitleHbq(String title) {
+        for (MediaHbq media : itemsInStoreHbq) {
+            if (media.getTitleHbq().equalsIgnoreCase(title)) {
+                
+                return media; // Trả về đối tượng Media tìm thấy
+            }
+        }
+        System.out.println("No media with the title \"" + title + "\" was found in the store.");
+        return null; // Trả về null nếu không tìm thấy
+    }
+    // Hiển thị danh sách tất cả media trong store
+    public void displayStoreHbq() {
+        if (itemsInStoreHbq.isEmpty()) {
+            System.out.println("The store is currently empty.");
+            return;
+        }
+        for (MediaHbq media : itemsInStoreHbq) {
+            System.out.println(media.toString());
+        }
+    }
+    public void printMediaInfo(MediaHbq media) {
+        if (media == null) {
+            System.out.println("Media not found.");
+            return;
+        }
+        // In thông tin thông qua phương thức toString()
+        System.out.println(media.toString());
+    }
 }

@@ -1,6 +1,7 @@
 package hust.soict.dsai.aims.cart;
 import hust.soict.dsai.aims.media.*;
 import java.util.ArrayList;
+import java.util.Collections;
 public class CartHungBQ {
     public static final int MAX_NUMBERS_ORDERED = 20;
     private ArrayList<MediaHbq> itemsOrdered = new ArrayList<MediaHbq>();  // Giỏ hàng chứa các đối tượng Media
@@ -55,54 +56,58 @@ public class CartHungBQ {
     }
     // In giỏ hàng với thông tin chi tiết của các Media
     public void printCartHbq() {
-        StringBuilder output = new StringBuilder("*********************CART************************** \nOrdered items: \n");
-        for (int i = 0; i < itemsOrdered.size(); i++) {
-            MediaHbq media = itemsOrdered.get(i);
-            output.append(i + 1).append(". ").append(media.getClass().getSimpleName()).append(" - [")
-                    .append(media.getTitleHbq()).append("] - [")
-                    .append(media.getCategoryHbq()).append("] - [");
-
-            if (media instanceof DiscHbq) {  // Nếu là Disc (DVD, CompactDisc)
-                DiscHbq disc = (DiscHbq) media;
-                output.append(disc.getAuthorHbq()).append("] - [")
-                        .append(disc.getLengthHbq()).append("]: ");
-            } else if (media instanceof BookHbq) {  // Nếu là Book
-                BookHbq book = (BookHbq) media;
-                output.append(book.getAuthorsHbq()).append("] - [");
+        if (itemsOrdered.isEmpty()) {
+            System.out.println("The cart is currently empty");
+        } else {
+            StringBuilder output = new StringBuilder("*********************CART************************** \nOrdered items: \n");
+            for (MediaHbq media : itemsOrdered) {
+                output.append(media.toString()).append("\n"); // Thêm thông tin media vào StringBuilder
             }
-            output.append(media.getCostHbq()).append(" $\n");
+            output.append("Total: ").append(totalCostHbq()).append(" $\n");
+            output.append("***************************************************\n");
+            System.out.println(output);
         }
-        output.append("Total: ").append(totalCostHbq()).append(" $\n");
-        output.append("***************************************************\n");
-        System.out.println(output);
     }
+    
     // Tìm Media theo ID
-    public void searchByIDHbq(int id) {
-        boolean found = false;
-        System.out.println("Search results for Id \"" + id + "\":");
+    public MediaHbq searchByIDHbq(int id) {
         for (MediaHbq media : itemsOrdered) {
             if (media.getIdHbq() == id) {
-                System.out.println("Your cart has Media with Id = " + id + ", its title is " + media.getTitleHbq());
-                found = true;
-                break;
+                System.out.println(media.toString());
+                return media; // Trả về đối tượng Media tìm thấy
             }
         }
-        if (!found) {
-            System.out.println("No Media found with Id = " + id);
-        }
+        System.out.println("No Media found with Id = " + id + " in cart");
+        return null; // Trả về null nếu không tìm thấy
     }
     // Tìm Media theo Title
-    public void searchByTitleHbq(String title) {
-        boolean found = false;
-        System.out.println("Search results for title \"" + title + "\":");
+    public MediaHbq searchByTitleHbq(String title) {
         for (MediaHbq media : itemsOrdered) {
             if (media.isMatch(title)) {  // Giả sử là phương thức kiểm tra tiêu đề trong Media
-                System.out.println("Your cart has Media with title " + media.getTitleHbq() + ", its Id is " + media.getIdHbq());
-                found = true;
+                System.out.println(media.toString());
+                return media; // Trả về đối tượng Media tìm thấy
             }
         }
-        if (!found) {
-            System.out.println("No Media found with title \"" + title + "\"");
-        }
+        System.out.println("No Media found with title \"" + title + "\"" + " in cart");
+        return null; // Trả về null nếu không tìm thấy
+    }
+    // Sắp xếp theo comparator
+    public void sortCartByTitleThenCost() {
+        Collections.sort(itemsOrdered, MediaHbq.COMPARE_BY_TITLE_COST);
+        System.out.println("Cart sorted by title then cost.");
+    }
+
+    public void sortCartByCostThenTitle() {
+        Collections.sort(itemsOrdered, MediaHbq.COMPARE_BY_COST_TITLE);
+        System.out.println("Cart sorted by cost then title.");
+    }
+    // Phương thức clear() để xóa tất cả các phần tử trong giỏ hàng
+    public void clearHbq() {
+        itemsOrdered.clear();  // Dùng phương thức clear() của ArrayList để xóa tất cả các phần tử
+        System.out.println("The cart has been cleared.");
+    }
+    // Kiểm tra giỏ hàng trống hay không
+    public boolean isEmptyHbq() {
+        return itemsOrdered.isEmpty(); // itemsInCartHbq là danh sách chứa các Media trong giỏ
     }
 }
