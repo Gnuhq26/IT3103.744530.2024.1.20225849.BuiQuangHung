@@ -1,10 +1,11 @@
-package hust.soict.globalict.swing;
+package hust.soict.dsai.swing;
 import java.awt.*;
 import java.awt.event.*;
 public class AWTAccumulatorHbq extends Frame {
     private TextField tfInput;
     private TextField tfOutput;
     private int sum = 0; // Accumulated sum, init to 0
+    
     // Constructor to setup the GUI components and event handlers
     public AWTAccumulatorHbq() {
         setLayout(new GridLayout(2, 2));
