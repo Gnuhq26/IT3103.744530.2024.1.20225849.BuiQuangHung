@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import hust.soict.dsai.aims.cart.CartHungBQ;
@@ -38,28 +39,32 @@ public class MediaStoreHbq extends JPanel {
         JButton addToCartBtn = new JButton("Add to cart");
         addToCartBtn.addActionListener(e -> handleAddToCart());
         container.add(addToCartBtn);
-
         // Nút "Play" nếu media là PlayableHbq
         if (media instanceof PlayableHbq) {
             JButton playBtn = new JButton("Play");
             playBtn.addActionListener(e -> handlePlay());
             container.add(playBtn);
         }
-
         this.add(Box.createVerticalGlue());
         this.add(title);
         this.add(cost);
         this.add(Box.createVerticalGlue());
         this.add(container);
         this.add(Box.createVerticalGlue());
-
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     }
-
     private void handleAddToCart() {
         cart.addMediaHbq(media);  // Thêm vào giỏ hàng
-        System.out.println("Added to cart: " + media.getTitleHbq());
+
+        // Hiển thị hộp thoại thông báo
+        JOptionPane.showMessageDialog(
+            null, // Hoặc bạn có thể truyền vào JFrame hiện tại nếu muốn dialog xuất hiện ở giữa màn hình giao diện
+            "Added to cart: " + media.getTitleHbq(),
+            "Notification", // Tiêu đề của hộp thoại
+            JOptionPane.INFORMATION_MESSAGE // Biểu tượng thông báo
+        );
     }
+
 
     private void handlePlay() {
         if (media instanceof PlayableHbq) {
