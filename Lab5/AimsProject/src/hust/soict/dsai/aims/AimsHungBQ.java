@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import hust.soict.dsai.aims.cart.*;
+import hust.soict.dsai.aims.exception.PlayerExceptionHbq;
 import hust.soict.dsai.aims.media.*;
 import hust.soict.dsai.aims.store.StoreHungBQ;
 
@@ -105,7 +106,11 @@ public class AimsHungBQ {
                         if (item instanceof PlayableHbq) {
                             if (item instanceof CompactDiscHbq || item instanceof DVDHungBQ) {
                                 // Nếu là CD hoặc DVD, thì cho phép phát
-                                ((PlayableHbq) item).play();
+                               try{
+                                   ((PlayableHbq) item).play();
+                               }catch (PlayerExceptionHbq e) {
+                                   System.err.println(e.getMessage());
+                               }
                             } else {
                                 System.out.println("This item is not playable");
                             }
@@ -149,7 +154,11 @@ public class AimsHungBQ {
                     if (item instanceof BookHbq) {
                         System.out.println("Books are not playable");
                     } else if (item instanceof PlayableHbq) {
-                        ((PlayableHbq) item).play();
+                        try{
+                            ((PlayableHbq) item).play();
+                        }catch (PlayerExceptionHbq e) {
+                            System.err.println(e.getMessage());
+                        }
                     }
                     continue;
                 default:
@@ -317,7 +326,11 @@ public class AimsHungBQ {
                         continue;
                     }
                     if (item instanceof PlayableHbq) {
-                        ((PlayableHbq) item).play();
+                        try{
+                            ((PlayableHbq) item).play();
+                        }catch (PlayerExceptionHbq e) {
+                            System.err.println(e.getMessage());
+                        }
                     } else {
                         System.out.println("Item not playable");
                     }

@@ -1,5 +1,5 @@
 package hust.soict.dsai.aims.media;
-public class DiscHbq extends MediaHbq {
+public class DiscHbq extends MediaHbq  {
     private int length;
     private String author;
     // Constructor đầy đủ

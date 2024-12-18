@@ -1,4 +1,4 @@
-package hust.soict.dsai.aims.screen;
+package hust.soict.dsai.aims.screen.store;
 
 import hust.soict.dsai.aims.cart.CartHungBQ;
 import hust.soict.dsai.aims.media.*;
@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -21,16 +23,17 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import hust.soict.dsai.aims.screen.cart.CartScreenHbq;
 import hust.soict.dsai.aims.store.StoreHungBQ;
 
 public class StoreScreenHbq extends JFrame{
     private static final long serialVersionUID = 1L;
     private StoreHungBQ store;
-    private CartHungBQ cart = new CartHungBQ();;
+    private CartHungBQ cart;
 
     public StoreScreenHbq(StoreHungBQ store) {
         this.store = store;
-        this.cart = new CartHungBQ();  // Khởi tạo giỏ hàng
+        cart = new CartHungBQ();  // Khởi tạo giỏ hàng
 
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
@@ -55,16 +58,40 @@ public class StoreScreenHbq extends JFrame{
         JMenu menu = new JMenu("Options");
         
         JMenu smUpdateStore = new JMenu("Update Store");
-        smUpdateStore.add(new JMenuItem("Add Book"));
-        smUpdateStore.add(new JMenuItem("Add CD"));
-        smUpdateStore.add(new JMenuItem("Add DVD"));
-        
+        JMenuItem addBook = new JMenuItem("Add Book");
+        JMenuItem addCD = new JMenuItem("Add CD");
+        JMenuItem addDVD = new JMenuItem("Add DVD");
+        addDVD.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddDVDToStoreScreenHbq(store);
+                dispose();
+
+            }
+
+        });
+        addCD.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddCDToStoreScreenHbq(store);
+                dispose();
+            }
+
+        });
+        addBook.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddBookToStoreScreenHbq(store);
+                dispose();
+            }
+        });
+
+        smUpdateStore.add(addBook);
+        smUpdateStore.add(addCD);
+        smUpdateStore.add(addDVD);
         menu.add(smUpdateStore);
         menu.add(new JMenuItem("View store"));
-        JMenuItem viewCartItem = new JMenuItem("View cart");
-        viewCartItem.addActionListener(e -> new CartScreenHbq(cart));  // Mở giao diện Cart
-        menu.add(viewCartItem);
-                
+
         JMenuBar menuBar = new JMenuBar();
         menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
         menuBar.add(menu);
@@ -109,22 +136,4 @@ public class StoreScreenHbq extends JFrame{
         return center;
     }
 
-    public static void main(String[] args) {
-        // Khởi tạo Store
-        StoreHungBQ store = new StoreHungBQ();
-        CartHungBQ cart = new CartHungBQ();  // Tạo giỏ hàng
-        
-        // Thêm các đối tượng Media vào cửa hàng với các lớp con cụ thể
-        MediaHbq book = new BookHbq(1, "Java Programming", "Book", 30.0f);
-        MediaHbq cd = new CompactDiscHbq("Rock Music",  15.0f);
-        MediaHbq dvd = new DVDHungBQ("Inception", "DVD", 25.0f);
-        
-        // Thêm các media vào store
-        store.addMediaHbq(book);
-        store.addMediaHbq(cd);
-        store.addMediaHbq(dvd);
-        
-        // Khởi tạo giao diện StoreScreen
-        StoreScreenHbq storescreen = new StoreScreenHbq(store);
-    }
 }

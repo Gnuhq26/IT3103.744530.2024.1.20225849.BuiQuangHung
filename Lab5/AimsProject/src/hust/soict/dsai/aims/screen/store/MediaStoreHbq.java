@@ -1,4 +1,4 @@
-package hust.soict.dsai.aims.screen;
+package hust.soict.dsai.aims.screen.store;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -54,14 +54,14 @@ public class MediaStoreHbq extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     }
     private void handleAddToCart() {
-        cart.addMediaHbq(media);  // Thêm vào giỏ hàng
+        cart.addMediaHbq(media);
 
         // Hiển thị hộp thoại thông báo
         JOptionPane.showMessageDialog(
-            null, // Hoặc bạn có thể truyền vào JFrame hiện tại nếu muốn dialog xuất hiện ở giữa màn hình giao diện
+            null,
             "Added to cart: " + media.getTitleHbq(),
-            "Notification", // Tiêu đề của hộp thoại
-            JOptionPane.INFORMATION_MESSAGE // Biểu tượng thông báo
+            "Notification",
+            JOptionPane.INFORMATION_MESSAGE
         );
     }
 

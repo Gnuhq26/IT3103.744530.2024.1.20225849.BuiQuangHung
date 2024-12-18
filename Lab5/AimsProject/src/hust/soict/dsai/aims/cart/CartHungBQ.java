@@ -1,16 +1,20 @@
 package hust.soict.dsai.aims.cart;
 import hust.soict.dsai.aims.media.*;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 public class CartHungBQ {
     public static final int MAX_NUMBERS_ORDERED = 20;
-    private ArrayList<MediaHbq> itemsOrdered = new ArrayList<MediaHbq>();  // Giỏ hàng chứa các đối tượng Media
+    private ObservableList<MediaHbq> itemsOrdered = FXCollections.observableArrayList();;  // Giỏ hàng chứa các đối tượng Media
 
     // Thêm Media vào giỏ hàng (DigitalVideoDisc, Book, CompactDisc...)
     public void addMediaHbq(MediaHbq media) {
         if (itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
             itemsOrdered.add(media);
-            System.out.println("The " + media.getClass().getSimpleName() + " \"" + media.getTitleHbq() + "\" has been added!");
+            System.out.println("The " + media.getClass().getSimpleName() + " \"" + media.getTitleHbq() + "\" has been added to your cart!");
         } else {
             System.out.println("Your cart is full, cannot add more!");
         }
@@ -111,7 +115,7 @@ public class CartHungBQ {
         return itemsOrdered.isEmpty(); // itemsInCartHbq là danh sách chứa các Media trong giỏ
     }
 
-    public ArrayList<MediaHbq> getItemsHbq() {
+    public ObservableList<MediaHbq> getItemsHbq() {
         return itemsOrdered;
     }
 }

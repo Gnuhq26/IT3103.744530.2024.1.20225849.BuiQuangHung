@@ -1,22 +1,32 @@
 package hust.soict.dsai.aims.media;
+import hust.soict.dsai.aims.exception.PlayerExceptionHbq;
+
+import javax.swing.*;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
 import java.util.ArrayList;
 public class CompactDiscHbq extends DiscHbq implements PlayableHbq{
     private String artist;  
     private ArrayList<TrackHbq> tracks;  //ArrayList chứa các đối tượng TrackHbq    
 
-    public void play() {
-        System.out.println("Playing CompactDisc: " + getTitleHbq());
-        System.out.println("Artist: " + this.artist);
-
-        if (tracks.isEmpty()) {
-            System.out.println("No tracks to play.");
-        } else {
-            System.out.println("Tracks:");
-            // Lặp qua tất cả các track và gọi phương thức play() của từng track
-            for (TrackHbq track : tracks) {
-                track.play();
+    public void play() throws PlayerExceptionHbq {
+        int size = tracks.size();
+        if(this.getLengthHbq() <= 0) {
+            throw new PlayerExceptionHbq("ERROR: CD length is non-positive");
+        }
+        for(TrackHbq track : tracks) {
+            if(track.getLengthHbq() > 0) {
+                JLabel text = new JLabel("CD - Title: " + track.getTitleHbq() + " Length: " + track.getLengthHbq());
+            }else{
+                throw new PlayerExceptionHbq("ERROR: CD length is non-positive");
             }
         }
+        JDialog dialog = new JDialog();
+        (dialog).setSize(300, 200);
+        dialog.setTitle("Play CD");
+        dialog.setVisible(true);
     }
     // Constructor với title và cost
     public CompactDiscHbq(String title, float cost) {

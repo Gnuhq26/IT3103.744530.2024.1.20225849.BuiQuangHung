@@ -1,10 +1,20 @@
 package hust.soict.dsai.aims.media;
+
+import hust.soict.dsai.aims.exception.PlayerExceptionHbq;
+
 public class DVDHungBQ extends DiscHbq implements PlayableHbq {
     private static int nbDigitalVideoDiscsHbq = 0;
 
-    public void play() {
-        System.out.println("Playing DVD: " + this.getTitleHbq());
-        System.out.println("DVD length: " + this.getLengthHbq());
+    public void play() throws PlayerExceptionHbq {
+        if (this.getLengthHbq() <= 0) {
+            // Print error message to the system
+            System.err.println("Error: The length of the media is invalid (<= 0). Cannot play the media: " + this.getTitleHbq());
+            // Raise the PlayerException
+            throw new PlayerExceptionHbq("Cannot play the media. Length is less than or equal to 0.");
+        }
+
+        // If length is valid, proceed with playing the media (simulation)
+        System.out.println("Playing " + this.getTitleHbq());
     }
     // Constructor với tự động tạo id
     public DVDHungBQ(String title) {

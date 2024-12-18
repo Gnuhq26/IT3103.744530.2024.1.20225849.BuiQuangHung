@@ -2,7 +2,7 @@ package hust.soict.dsai.aims.media;
 import java.util.Comparator;
 import hust.soict.dsai.aims.media.comparators.*;
 
-public abstract class MediaHbq implements Comparable<MediaHbq>{
+public class MediaHbq implements Comparable<MediaHbq>{
     @Override
     public int compareTo(MediaHbq other) {
         // So sánh theo title
@@ -46,7 +46,7 @@ public abstract class MediaHbq implements Comparable<MediaHbq>{
     }
     public MediaHbq(String title, String category, float cost) {
         this(title, cost);
-        this.cost = cost;
+        this.category = category;
     }
     public MediaHbq(int id, String title, String category, float cost) {
         this(title, category, cost);
